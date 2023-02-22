@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { INews } from 'types/news';
-import { getNews } from "./newsOperations";
+import { getNews, deleteNews } from "./newsOperations";
 
 
 interface IStateNews {
@@ -31,6 +31,9 @@ const newsSlice = createSlice({
         [getNews.rejected.type]: (state, {payload}: PayloadAction<string>) => {
             state.isLoading = false;
             state.error = payload;
+        },
+        [deleteNews.type]: (state, { payload }: PayloadAction<{ id: number}>) => {
+            state.news = state.news.filter(el => el.id !== payload.id);
         }
   }
   

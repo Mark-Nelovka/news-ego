@@ -1,9 +1,9 @@
-import { Card, Container, Grid, Typography } from "@mui/material";
+import { Button, Card, Container, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import FormateDate from "helpers/transformDate";
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "state/hook";
-import { getNews } from "state/news/newsOperations";
+import { deleteNews, getNews } from "state/news/newsOperations";
 import { INews } from "types/news";
 import calendar from "assets/images/calendar.svg";
 
@@ -17,7 +17,7 @@ export const Cards = () => {
 
   return (
     <Container maxWidth="xl">
-      <Box sx={{ width: "100%", paddingTop: 2 }}>
+      <Box sx={{ width: "100%", paddingTop: 2, paddingBottom: 2 }}>
         <Grid container rowSpacing={2.5} columnSpacing={2.5}>
           {news.length &&
             news.map((worker) => {
@@ -28,14 +28,18 @@ export const Cards = () => {
               );
             })}
         </Grid>
+        {/* <Button onClick={() => dispatch(getNews())}>More news</Button> */}
       </Box>
     </Container>
   );
 };
 
 function Cardq({ id, title, summary, imageUrl, publishedAt }: INews) {
+  // const [first, setfirst] = useState<number>();
+  const dispatch = useAppDispatch();
+
   return (
-    <Card key={id} className="cards__list-item">
+    <Card key={id} sx={{ height: "auto" }}>
       <Box>
         <img src={imageUrl} width="400" height="217" alt="visual news" />
       </Box>
@@ -44,10 +48,17 @@ function Cardq({ id, title, summary, imageUrl, publishedAt }: INews) {
           <Box>
             <img src={calendar} alt="calendar icon" />
           </Box>
-          <Typography>{FormateDate(publishedAt)}</Typography>
+          <Typography variant="body1">{FormateDate(publishedAt)}</Typography>
         </Box>
-        <Typography>{title}</Typography>
-        <Typography>{summary.slice(0, 100)}...</Typography>
+        <Typography variant="body1">{title}</Typography>
+        <Typography variant="body1">{summary.slice(0, 50)}...</Typography>
+        <Button
+          sx={{ background: "red" }}
+          variant="contained"
+          onClick={() => dispatch(deleteNews(id))}
+        >
+          Delete
+        </Button>
       </Box>
     </Card>
   );
