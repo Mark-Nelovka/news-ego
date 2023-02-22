@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunknews_ego=self.webpackChunknews_ego||[]).push([[98],{8045:function(e,n,r){r.r(n),r.d(n,{default:function(){return s}});r(2791);var u=r(3329);function s(){return(0,u.jsx)("div",{children:"ErrorPage"})}}}]);
+//# sourceMappingURL=ErrorPage.fae6d789.chunk.js.map
