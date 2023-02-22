@@ -1,13 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { INews } from 'types/news';
 import { getNews } from "./newsOperations";
 
-interface News {
-    id: number,
-    title: string
-}
 
 interface IStateNews {
-    news: News[],
+    news: INews[],
     isLoading: boolean,
     error: string
 }
@@ -26,7 +23,7 @@ const newsSlice = createSlice({
         [getNews.pending.type]: (state, _) => {
             state.isLoading = true;
         },
-        [getNews.fulfilled.type]: (state, { payload }: PayloadAction<News[]>) => {
+        [getNews.fulfilled.type]: (state, { payload }: PayloadAction<INews[]>) => {
             state.news = payload;
             state.isLoading = false;
             state.error = ""

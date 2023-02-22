@@ -1,5 +1,11 @@
+import Cards from "components/Cards";
+
 function NewsPage() {
-  return <div>News page</div>;
+  return (
+    <div>
+      <Cards />
+    </div>
+  );
 }
 
 export default NewsPage;

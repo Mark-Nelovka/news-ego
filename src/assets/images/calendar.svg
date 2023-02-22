@@ -1,0 +1,45 @@
+ <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="13"
+              height="13"
+              viewBox="0 0 32 32"
+            >
+              <title>date-icon</title>
+              <path
+                fill="none"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-miterlimit="4"
+                stroke-width="2"
+                stroke="#000"
+                d="M24 5.333h-16c-2.946 0-5.333 2.388-5.333 5.333v13.333c0 2.945 2.388 5.333 5.333 5.333h16c2.946 0 5.333-2.388 5.333-5.333v-13.333c0-2.946-2.388-5.333-5.333-5.333z"
+              ></path>
+              <path
+                fill="none"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-miterlimit="4"
+                stroke-width="2"
+                stroke="#000"
+                d="M10.667 2.667v5.333"
+              ></path>
+              <path
+                fill="none"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-miterlimit="4"
+                stroke-width="2"
+                stroke="#000"
+                d="M21.333 2.667v5.333"
+              ></path>
+              <path
+                fill="none"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-miterlimit="4"
+                stroke-width="2"
+                stroke="#000"
+                d="M2.667 13.334h26.667"
+              ></path>
+            </svg>

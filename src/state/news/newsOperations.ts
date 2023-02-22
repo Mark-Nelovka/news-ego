@@ -8,6 +8,7 @@ axios.defaults.baseURL = `${REACT_APP_URL_API}`;
 const getNews = createAsyncThunk('news/getNews', async (_, thunkApi) => {
    try {
       const {data} = await axios.get("/v3/articles?_limit=6");
+      console.log("first")
       return data;
    } catch (error) {
       thunkApi.rejectWithValue("Oooops, something is wrong");
