@@ -5,14 +5,19 @@ import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 
 // axios.defaults.baseURL = `${REACT_APP_URL_API}`;
 
+interface IQWE {
+      name: string,
+      password: string
+}
 
-
-const auth = createAsyncThunk('auth/singUp', async (_, thunkApi) => {
+const auth = createAsyncThunk('auth/singUp', async (payload: IQWE, thunkApi) => {
    try {
-      const {data} = await axios.get("/v3/articles?_limit=6");
-      return data;
+      const {data} = await axios.post("http://localhost:4040/login", payload);
+      return data.token;
    } catch (error) {
-      thunkApi.rejectWithValue("Oooops, something is wrong");
+      if (axios.isAxiosError(error)) {
+        return thunkApi.rejectWithValue(error.response?.data.message);
+      }      
    }
 });
 

@@ -6,8 +6,12 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { List } from "@mui/material";
 import { theme } from "styles/theme";
+import { useAppDispatch, useAppSelector } from "state/hook";
+import { logOut } from "state/auth/authOperations";
 
 export default function Header() {
+  const login = useAppSelector((state) => state.auth.token);
+  const dispatch = useAppDispatch();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -51,9 +55,20 @@ export default function Header() {
               </List>
             </List>
           </List>
-          <Typography component="button" variant="body1" color="inherit">
-            Login
-          </Typography>
+          {!login ? (
+            <Typography component="button" variant="body1" color="inherit">
+              Login
+            </Typography>
+          ) : (
+            <Typography
+              component="button"
+              onClick={() => dispatch(logOut())}
+              variant="body1"
+              color="inherit"
+            >
+              Logout
+            </Typography>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
