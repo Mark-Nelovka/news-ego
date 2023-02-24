@@ -1,13 +1,11 @@
 import { Container, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import Form from "components/Form";
 
 function HomePage() {
   return (
     <Container maxWidth="lg">
       <Box paddingTop={2}>
-        <Form />
-        {/* <Typography variant="body1">
+        <Typography variant="body1">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel
           excepturi porro dicta, earum maxime minus eligendi? Sit autem
           distinctio qui. Quis possimus quae reiciendis a numquam nostrum
@@ -76,7 +74,7 @@ function HomePage() {
           asperiores, animi maxime neque, non laudantium nobis praesentium vero
           exercitationem rerum alias cupiditate quaerat incidunt? Quod quasi
           incidunt deserunt, reprehenderit itaque accusamus harum eius.
-        </Typography> */}
+        </Typography>
       </Box>
     </Container>
   );

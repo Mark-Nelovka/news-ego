@@ -29,7 +29,6 @@ const authSlice = createSlice({
         },
         [auth.rejected.type]: (state, {payload}: PayloadAction<string>) => {
             state.isLoading = false;
-            console.log(payload)
             state.error = payload;
         },
         [logOut.type]: (state, _) => {

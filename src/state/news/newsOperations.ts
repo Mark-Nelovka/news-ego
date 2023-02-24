@@ -5,12 +5,14 @@ const { REACT_APP_URL_API } = process.env;
 
 axios.defaults.baseURL = `${REACT_APP_URL_API}`;
 
-const getNews = createAsyncThunk('news/getNews', async (_, thunkApi) => {
+const getNews = createAsyncThunk('news/getNews', async (page: number, thunkApi) => {
    try {
-      const { data } = await axios.get("/v3/articles");
+      const { data } = await axios.get(`/news/${page}`);
       return data;
    } catch (error) {
-      thunkApi.rejectWithValue("Oooops, something is wrong");
+      if (axios.isAxiosError(error)) {
+         return error
+      }
    }
 });
 

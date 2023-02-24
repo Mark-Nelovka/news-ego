@@ -4,15 +4,29 @@ import { getNews, deleteNews } from "./newsOperations";
 
 
 interface IStateNews {
-    news: INews[],
+    data: {
+        items: INews[],
+        totalCount?: number
+    },
     isLoading: boolean,
-    error: string
-}
+    error: {
+        status: string | null,
+        code: number | null,
+        message: string | null
+    };
+} 
 
 export const initialState: IStateNews = {
-    news: [],
+    data: {
+        items: [],
+        totalCount: 0
+    },
     isLoading: false,
-    error: ""
+    error: {
+        status: null,
+        code: null,
+        message: null
+    }
 };
 
 const newsSlice = createSlice({
@@ -23,17 +37,18 @@ const newsSlice = createSlice({
         [getNews.pending.type]: (state, _) => {
             state.isLoading = true;
         },
-        [getNews.fulfilled.type]: (state, { payload }: PayloadAction<INews[]>) => {
-            state.news = payload;
+        [getNews.fulfilled.type]: (state, { payload }: PayloadAction<IStateNews>) => {
+            state.data.items = payload.data.items;
+            state.data.totalCount = payload.data.totalCount;
             state.isLoading = false;
-            state.error = ""
+            state.error.message = "";
         },
-        [getNews.rejected.type]: (state, {payload}: PayloadAction<string>) => {
+        [getNews.rejected.type]: (state, {payload}: PayloadAction<IStateNews>) => {
             state.isLoading = false;
-            state.error = payload;
+            // state.error.message = payload.error.message;
         },
         [deleteNews.type]: (state, { payload }: PayloadAction<{ id: number}>) => {
-            state.news = state.news.filter(el => el.id !== payload.id);
+            state.data.items = state.data.items.filter(el => el.id !== payload.id);
         }
   }
   

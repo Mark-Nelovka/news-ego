@@ -8,7 +8,19 @@ export const theme = createTheme({
          fontFamily: "Raleway",
          fontSize: 22,
       padding: 5
-       }
+    },
+    body2: {
+      fontFamily: "Raleway",
+      fontSize: 18,
+            // padding: 5
+
+    },
+    subtitle1: {
+      fontFamily: "Raleway",
+      fontSize: 14,
+            // padding: 5
+
+    }
   },
   palette: {
     primary: {

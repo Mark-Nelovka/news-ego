@@ -1,9 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 
-// const { REACT_APP_URL_API } = process.env;
+const { REACT_APP_URL_API } = process.env;
 
-// axios.defaults.baseURL = `${REACT_APP_URL_API}`;
+axios.defaults.baseURL = `${REACT_APP_URL_API}`;
 
 interface IQWE {
       name: string,
@@ -12,7 +12,7 @@ interface IQWE {
 
 const auth = createAsyncThunk('auth/singUp', async (payload: IQWE, thunkApi) => {
    try {
-      const {data} = await axios.post("http://localhost:4040/login", payload);
+      const {data} = await axios.post("/login", payload);
       return data.token;
    } catch (error) {
       if (axios.isAxiosError(error)) {
