@@ -13,8 +13,10 @@ import { useAppDispatch, useAppSelector } from "state/hook";
 import { deleteNews, getNews } from "state/news/newsOperations";
 import { INews } from "types/news";
 import calendar from "assets/images/calendar.svg";
+import { useTranslation } from "react-i18next";
 
 export const Cards = () => {
+  const { t } = useTranslation("translation");
   const [page, setPage] = useState<number>(1);
   const news = useAppSelector((state) => state.news.data);
   const isLoading = useAppSelector((state) => state.news.isLoading);
@@ -57,7 +59,7 @@ export const Cards = () => {
               {isLoading ? (
                 <CircularProgress size={18} color="inherit" />
               ) : (
-                "More news"
+                t("button.more")
               )}
             </Button>
           </Box>
@@ -69,6 +71,8 @@ export const Cards = () => {
 
 function Cardq({ id, title, imageUrl, publishedAt }: INews) {
   // const [first, setfirst] = useState<number>();
+  const [first, setfirst] = useState("Mark");
+  const { t } = useTranslation("translation");
   const dispatch = useAppDispatch();
 
   return (
@@ -88,15 +92,13 @@ function Cardq({ id, title, imageUrl, publishedAt }: INews) {
         <Typography variant="body2" sx={{ mb: "auto" }}>
           {title}
         </Typography>
-        {/* <Box sx={{ mt: "auto" }}> */}
         <Button
           sx={{ background: "red", position: "absolute", bottom: 10 }}
           variant="contained"
           onClick={() => dispatch(deleteNews(id))}
         >
-          Delete
+          {t("button.remove")}
         </Button>
-        {/* </Box> */}
       </Box>
     </Card>
   );

@@ -9,8 +9,12 @@ import { theme } from "styles/theme";
 import { useAppDispatch, useAppSelector } from "state/hook";
 import { logOut } from "state/auth/authOperations";
 import Form from "components/Form";
-
-export default function Header() {
+import { useTranslation } from "react-i18next";
+// import { TFunction } from "i18next";
+function Header() {
+  const { t, i18n } = useTranslation("translation");
+  // tFunction: TFunction
+  // const tFunction =;
   const [open, setOpen] = useState(false);
   const login = useAppSelector((state) => state.auth.token);
   const isLoading = useAppSelector((state) => state.auth.isLoading);
@@ -22,6 +26,11 @@ export default function Header() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const changeLanguage = (e: React.MouseEvent) => {
+    const { textContent } = e.target as HTMLButtonElement;
+    i18n.changeLanguage(textContent!);
   };
 
   return (
@@ -43,7 +52,7 @@ export default function Header() {
                     component={Link}
                     to="/news-ego"
                   >
-                    Home
+                    {t("header.home")}
                   </Typography>
                 </List>
                 <List component="li" sx={{ mr: 6 }}>
@@ -53,7 +62,7 @@ export default function Header() {
                     component={Link}
                     to="/news-ego/news"
                   >
-                    News
+                    {t("header.news")}
                   </Typography>
                 </List>
                 <List component="li">
@@ -63,11 +72,20 @@ export default function Header() {
                     component={Link}
                     to="/news-ego/profile"
                   >
-                    Profile
+                    {t("header.profile")}
                   </Typography>
                 </List>
               </List>
             </List>
+            <Typography
+              onClick={changeLanguage}
+              component="button"
+              variant="body1"
+              sx={{ mr: 3 }}
+              color="inherit"
+            >
+              {t("header.language.ua")}
+            </Typography>
             {!login ? (
               <Typography
                 onClick={handleOpen}
@@ -75,7 +93,7 @@ export default function Header() {
                 variant="body1"
                 color="inherit"
               >
-                Login
+                {t("header.auth.login")}
               </Typography>
             ) : (
               <Typography
@@ -84,7 +102,7 @@ export default function Header() {
                 variant="body1"
                 color="inherit"
               >
-                Logout
+                {t("header.auth.logout")}
               </Typography>
             )}
           </Toolbar>
@@ -101,3 +119,5 @@ export default function Header() {
     </>
   );
 }
+
+export default Header;

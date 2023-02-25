@@ -23,7 +23,7 @@ const newsPersistConfig = {
 const authPersistConfig = {
   key: 'auth',
   storage,
-  blacklist: ["isLoading"]
+  blacklist: ["isLoading", "error"]
 };
 
 const NewsPersistedReducer = persistReducer(newsPersistConfig, newsReducer);

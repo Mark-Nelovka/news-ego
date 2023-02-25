@@ -4,13 +4,19 @@ import { auth, logOut } from "./authOperations";
 interface IStateNews {
     token: null | string,
     isLoading: boolean,
-    error: null | string
+    error: {
+        name: boolean,
+        password: boolean
+    }
 }
 
 export const initialState: IStateNews = {
     token: null,
     isLoading: false,
-    error: null
+    error: {
+        name: true,
+        password: true
+    }
 };
 
 const authSlice = createSlice({
@@ -20,19 +26,24 @@ const authSlice = createSlice({
     extraReducers: {
         [auth.pending.type]: (state, _) => {
             state.isLoading = true;
-            state.error = null;
+            // state.error.name = false;
         },
-        [auth.fulfilled.type]: (state, { payload }: PayloadAction<string>) => {
-            state.token = payload;
+        [auth.fulfilled.type]: (state, { payload }: PayloadAction<{token: string}>) => {
+            state.token = payload.token;
             state.isLoading = false;
-            state.error = null;
+            state.error.name = true;
+            state.error.password = true;
         },
-        [auth.rejected.type]: (state, {payload}: PayloadAction<string>) => {
+        [auth.rejected.type]: (state, { payload }: PayloadAction<IStateNews>) => {
+            console.log(payload)
             state.isLoading = false;
-            state.error = payload;
+            state.error.name = payload.error.name;
+            state.error.password = payload.error.password;
         },
         [logOut.type]: (state, _) => {
-         state.token = null
+            state.token = null
+            state.error.name = true;
+            state.error.password = true;
         }
     }
     

@@ -12,11 +12,11 @@ interface IQWE {
 
 const auth = createAsyncThunk('auth/singUp', async (payload: IQWE, thunkApi) => {
    try {
-      const {data} = await axios.post("/login", payload);
-      return data.token;
+      const { data } = await axios.post("/login", payload);
+      return data;
    } catch (error) {
       if (axios.isAxiosError(error)) {
-        return thunkApi.rejectWithValue(error.response?.data.message);
+        return thunkApi.rejectWithValue(error.response?.data);
       }      
    }
 });

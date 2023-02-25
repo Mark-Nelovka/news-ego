@@ -1,0 +1,32 @@
+{
+    "header": {
+        "home": "Home",
+        "news": "News",
+        "profile": "Profile",
+        "language": {
+            "en": "en",
+            "ua": "ua"
+        },
+        "auth": {
+            "login": "Login",
+            "logout": "Logout"
+        }
+    },
+    "form": {
+        "title": "Authorization",
+        "label": {
+            "name": "Name",
+            "password": "Password"
+        },
+        "error": {
+            "name": "Only latin letters",
+            "password": "Password length must be more 4 symbols",
+            "invalidName": "Invalid name",
+            "invalidPassword": "Invalid password"
+        }
+    },
+    "button": {
+        "remove": "Delete",
+        "more": "More info"
+    }
+}

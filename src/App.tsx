@@ -6,6 +6,7 @@ import HomePage from "pages/HomePage/HomePage";
 import PrivatRoute from "routers/PrivatRouter";
 import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/material";
+import "./i18n";
 
 const NewsPage = lazy(
   () => import("pages/NewsPage/NewsPage" /* webpackChunkName: "NewsPage" */)

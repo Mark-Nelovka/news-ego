@@ -11,10 +11,11 @@ import {
 } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { makeStyles } from "@mui/styles";
-import { useAppDispatch } from "state/hook";
+import { useAppDispatch, useAppSelector } from "state/hook";
 import { auth } from "state/auth/authOperations";
 import { theme } from "styles/theme";
 import { Box } from "@mui/system";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles(
   (theme: any): { form: any; submit: any; paper: any; loader: any } => ({
@@ -58,15 +59,30 @@ export const Form = ({
   isLogin,
   isLoading,
 }: IFormProps) => {
+  const { t } = useTranslation("translation");
+
   const classes = useStyles(theme);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState({
+    name: true,
+    password: true,
+  });
   const [validErrorMessage, setValidErrorMessage] = useState<IValidField>({
     name: null,
     password: null,
   });
-
+  const isError = useAppSelector((state) => state.auth.error);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!isError.name || !isError.password) {
+      setError({
+        name: isError.name,
+        password: isError.password,
+      });
+    }
+  }, [isError]);
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -75,10 +91,16 @@ export const Form = ({
       setValidErrorMessage({
         name: null,
       });
+      setError((prevState) => {
+        return {
+          ...prevState,
+          name: true,
+        };
+      });
       return;
     }
     setValidErrorMessage({
-      name: "Only english word",
+      name: `${t("form.error.name")}`,
     });
   };
 
@@ -89,12 +111,18 @@ export const Form = ({
 
       if (password.length < 4) {
         setValidErrorMessage({
-          password: "Password length must be more 4 symbols",
+          password: `${t("form.error.password")}`,
         });
         return;
       }
       setValidErrorMessage({
         password: null,
+      });
+      setError((prevState) => {
+        return {
+          ...prevState,
+          password: true,
+        };
       });
       return;
     }
@@ -135,7 +163,7 @@ export const Form = ({
           <DeleteForeverIcon fontSize="medium" />
         </Button>
         <Typography variant="h4" align="center" gutterBottom>
-          Вход
+          {t("form.title")}
         </Typography>
         {isLoading && (
           <Box className={classes.loader}>
@@ -147,13 +175,13 @@ export const Form = ({
             <FormControl
               fullWidth
               sx={{ height: 100 }}
-              error={validErrorMessage.name ? true : false}
+              error={validErrorMessage.name || !error.name ? true : false}
               margin="normal"
             >
               <TextField
                 variant="outlined"
-                label="Name"
-                error={validErrorMessage.name ? true : false}
+                label={`${t("form.label.name")}`}
+                error={validErrorMessage.name || !error.name ? true : false}
                 value={username}
                 onChange={handleUsernameChange}
                 name="name"
@@ -161,26 +189,36 @@ export const Form = ({
               />
               <FormHelperText id="component-error-text">
                 {validErrorMessage.name && validErrorMessage.name}
+                {!error.name &&
+                  !validErrorMessage.name &&
+                  t("form.error.invalidName")}
               </FormHelperText>
             </FormControl>
             <FormControl
               fullWidth
               sx={{ height: 100 }}
               margin="normal"
-              error={validErrorMessage.password ? true : false}
+              error={
+                validErrorMessage.password || !error.password ? true : false
+              }
             >
               <TextField
                 variant="outlined"
-                label="Password"
+                label={`${t("form.label.password")}`}
                 type="password"
                 name="password"
-                error={validErrorMessage.password ? true : false}
+                error={
+                  validErrorMessage.password || !error.password ? true : false
+                }
                 value={password}
                 onChange={handlePasswordChange}
                 required
               />
               <FormHelperText id="component-error-text">
                 {validErrorMessage.password && validErrorMessage.password}
+                {!error.password &&
+                  !validErrorMessage.password &&
+                  t("form.error.invalidPassword")}
               </FormHelperText>
             </FormControl>
             <Button
@@ -191,7 +229,7 @@ export const Form = ({
               className={classes.submit}
               // sx={{ mt: 2 }}
             >
-              Login
+              {t("header.auth.login")}
             </Button>
           </form>
         )}
