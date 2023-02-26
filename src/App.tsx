@@ -4,9 +4,10 @@ import { lazy, Suspense } from "react";
 import Header from "components/Header/Header";
 import HomePage from "pages/HomePage/HomePage";
 import PrivatRoute from "routers/PrivatRouter";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/material";
 import "./i18n";
+import { theme } from "styles/theme";
 
 const NewsPage = lazy(
   () => import("pages/NewsPage/NewsPage" /* webpackChunkName: "NewsPage" */)
@@ -25,7 +26,7 @@ const ErrorPage = lazy(
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Header />
       <main>
         <Suspense
@@ -43,10 +44,10 @@ function App() {
           }
         >
           <Routes>
-            <Route path="/news-ego" element={<HomePage />} />
-            <Route path="/news-ego/news" element={<NewsPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/news" element={<NewsPage />} />
             <Route
-              path="/news-ego/profile"
+              path="/profile"
               element={
                 <PrivatRoute>
                   <ProfilePage />
@@ -57,7 +58,7 @@ function App() {
           </Routes>
         </Suspense>
       </main>
-    </>
+    </ThemeProvider>
   );
 }
 

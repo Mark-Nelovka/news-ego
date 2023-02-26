@@ -1,32 +1,31 @@
-import { createTheme } from '@mui/material/styles';
-
-// We also will adding new styles till doing markup
+import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   typography: {
     body1: {
-         fontFamily: "Raleway",
-         fontSize: 22,
-      padding: 5
+      fontFamily: "Raleway",
+      fontSize: 20,
+      padding: 5,
+      color: "#fff",
+      fontWeight: 500,
+      letterSpacing: 1.1
     },
     body2: {
       fontFamily: "Raleway",
       fontSize: 18,
-            // padding: 5
-
+      color: "#000",
+      lineHeight: 1.5
     },
     subtitle1: {
       fontFamily: "Raleway",
       fontSize: 14,
-            // padding: 5
-
     }
   },
   palette: {
     primary: {
       main: "#2196f3",
-      
     },
+    
     secondary: {
       main: "#fff",
       },
@@ -39,4 +38,5 @@ export const theme = createTheme({
           light: "#4caf50",
       }
   },
+
 });

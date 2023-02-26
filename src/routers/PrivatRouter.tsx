@@ -7,5 +7,5 @@ interface IPrivatRouterProps {
 
 export default function PrivatRoute({ children }: IPrivatRouterProps) {
   const isToken = useAppSelector((state) => state.auth.token);
-  return <>{isToken ? children : <Navigate to="/news-ego" />}</>;
+  return <>{isToken ? children : <Navigate to="/" />}</>;
 }

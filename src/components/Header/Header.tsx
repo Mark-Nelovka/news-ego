@@ -1,120 +1,76 @@
-import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
-import { List } from "@mui/material";
-import { theme } from "styles/theme";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Toolbar, AppBar, Theme } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { makeStyles } from "@mui/styles";
+import Form from "components/Form";
+import NavMenu from "./components/NavMenu";
+import { ButtonGen } from "general";
 import { useAppDispatch, useAppSelector } from "state/hook";
 import { logOut } from "state/auth/authOperations";
-import Form from "components/Form";
-import { useTranslation } from "react-i18next";
-// import { TFunction } from "i18next";
+import { theme } from "styles/theme";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  buttonLanguage: {
+    ...theme.typography.body1,
+    fontSize: 15,
+    minWidth: "auto",
+    "&:not(:last-child)": {
+      marginRight: 20,
+    },
+  },
+}));
+
 function Header() {
-  const { t, i18n } = useTranslation("translation");
-  // tFunction: TFunction
-  // const tFunction =;
   const [open, setOpen] = useState(false);
-  const login = useAppSelector((state) => state.auth.token);
+  const isToken = useAppSelector((state) => state.auth.token);
   const isLoading = useAppSelector((state) => state.auth.isLoading);
+
   const dispatch = useAppDispatch();
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const { t, i18n } = useTranslation("translation");
+  const classes = useStyles(theme);
+  const navigate = useNavigate();
 
   const changeLanguage = (e: React.MouseEvent) => {
     const { textContent } = e.target as HTMLButtonElement;
     i18n.changeLanguage(textContent!);
   };
 
+  useEffect(() => {
+    if (isToken && open) {
+      setOpen(false);
+      navigate("/profile");
+    }
+  }, [isToken, navigate, open]);
+
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          position="static"
-          sx={{
-            backgroundColor: theme.palette.primary.main,
-          }}
-        >
-          <Toolbar>
-            <List component="nav" sx={{ mr: "auto" }}>
-              <List component="ul" sx={{ display: "flex" }}>
-                <List component="li" sx={{ mr: 6 }}>
-                  <Typography
-                    variant="body1"
-                    color={theme.palette.secondary.main}
-                    component={Link}
-                    to="/news-ego"
-                  >
-                    {t("header.home")}
-                  </Typography>
-                </List>
-                <List component="li" sx={{ mr: 6 }}>
-                  <Typography
-                    variant="body1"
-                    color={theme.palette.secondary.main}
-                    component={Link}
-                    to="/news-ego/news"
-                  >
-                    {t("header.news")}
-                  </Typography>
-                </List>
-                <List component="li">
-                  <Typography
-                    variant="body1"
-                    color={theme.palette.secondary.main}
-                    component={Link}
-                    to="/news-ego/profile"
-                  >
-                    {t("header.profile")}
-                  </Typography>
-                </List>
-              </List>
-            </List>
-            <Typography
-              onClick={changeLanguage}
-              component="button"
-              variant="body1"
-              sx={{ mr: 3 }}
-              color="inherit"
+      <AppBar position="static">
+        <Toolbar>
+          <NavMenu />
+          <ButtonGen style={classes.buttonLanguage} onClick={changeLanguage}>
+            {t("header.language.ua")}
+          </ButtonGen>
+          {isToken && (
+            <ButtonGen
+              style={classes.buttonLanguage}
+              onClick={() => dispatch(logOut())}
             >
-              {t("header.language.ua")}
-            </Typography>
-            {!login ? (
-              <Typography
-                onClick={handleOpen}
-                component="button"
-                variant="body1"
-                color="inherit"
-              >
-                {t("header.auth.login")}
-              </Typography>
-            ) : (
-              <Typography
-                component="button"
-                onClick={() => dispatch(logOut())}
-                variant="body1"
-                color="inherit"
-              >
-                {t("header.auth.logout")}
-              </Typography>
-            )}
-          </Toolbar>
-        </AppBar>
-      </Box>
+              {t("header.auth.logout")}
+            </ButtonGen>
+          )}
+          {!isToken && (
+            <ButtonGen
+              style={classes.buttonLanguage}
+              onClick={() => setOpen(!open)}
+            >
+              {t("header.auth.login")}
+            </ButtonGen>
+          )}
+        </Toolbar>
+      </AppBar>
       {open && (
-        <Form
-          isOpen={open}
-          handleClose={handleClose}
-          isLogin={login}
-          isLoading={isLoading}
-        />
+        <Form isOpen={open} handleClose={setOpen} isLoading={isLoading} />
       )}
     </>
   );

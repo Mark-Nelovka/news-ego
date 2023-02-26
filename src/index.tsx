@@ -7,8 +7,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import store, { persistor } from "state/store";
-import { theme } from "styles/theme";
-import { ThemeProvider } from "@emotion/react";
 import { StyledEngineProvider } from "@mui/material";
 import App from "./App";
 
@@ -19,11 +17,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+        <BrowserRouter basename="/">
           <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
-              <App />
-            </ThemeProvider>
+            <App />
           </StyledEngineProvider>
         </BrowserRouter>
       </PersistGate>

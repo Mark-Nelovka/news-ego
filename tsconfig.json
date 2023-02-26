@@ -16,6 +16,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"
+    // "noImplicitAny": true,
+    // "noImplicitThis": true,
+    // "strictNullChecks": true
   },
   "include": ["src"],
   "files": ["./node_modules/redux-persist/types/integration/react.d.ts"]

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
   Button,
   CircularProgress,
@@ -9,16 +9,32 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { ButtonGen } from "general";
+import CloseIcon from "@mui/icons-material/Close";
 import { makeStyles } from "@mui/styles";
 import { useAppDispatch, useAppSelector } from "state/hook";
 import { auth } from "state/auth/authOperations";
 import { theme } from "styles/theme";
 import { Box } from "@mui/system";
 import { useTranslation } from "react-i18next";
+import { styled } from "@mui/material/styles";
+import { Theme } from "@material-ui/core";
+
+const CustomizedSlider = styled(Button)(
+  ({ theme }) =>
+    `
+  color: ${theme.palette.primary.main};
+
+  :hover {
+    color: ${theme.palette.secondary.main};
+  }
+`
+);
 
 const useStyles = makeStyles(
-  (theme: any): { form: any; submit: any; paper: any; loader: any } => ({
+  (
+    theme: Theme
+  ): { form: any; submit: any; paper: any; loader: any; button: any } => ({
     form: {
       width: "100%",
     },
@@ -38,13 +54,19 @@ const useStyles = makeStyles(
       left: "50%",
       transform: `translate(${"-50%"}, ${"-50%"})`,
     },
+    button: {
+      padding: 5,
+      // background: "#000",
+      // fontFamily: theme.typography. ,
+      width: "auto",
+      marginRight: 15,
+    },
   })
 );
 
 interface IFormProps {
   isOpen: boolean;
-  handleClose: () => void;
-  isLogin: string | null;
+  handleClose: Dispatch<SetStateAction<boolean>>;
   isLoading: boolean;
 }
 
@@ -53,12 +75,7 @@ interface IValidField {
   password?: string | null;
 }
 
-export const Form = ({
-  isOpen,
-  handleClose,
-  isLogin,
-  isLoading,
-}: IFormProps) => {
+export const Form = ({ isOpen, handleClose, isLoading }: IFormProps) => {
   const { t } = useTranslation("translation");
 
   const classes = useStyles(theme);
@@ -137,16 +154,10 @@ export const Form = ({
     dispatch(auth({ name: username, password }));
   };
 
-  useEffect(() => {
-    if (isLogin) {
-      handleClose();
-    }
-  }, [isLogin, handleClose]);
-
   return (
-    <Modal open={isOpen} onClose={handleClose}>
+    <Modal open={isOpen} onClose={() => handleClose(!isOpen)}>
       <Container maxWidth="xs" className={classes.paper}>
-        <Button
+        {/* <Button
           onClick={handleClose}
           sx={{
             position: "absolute",
@@ -155,13 +166,15 @@ export const Form = ({
             width: 30,
             height: 30,
             borderRadius: "50%",
-            // background: "#000",
+            background: "#ff00001b",
             padding: 0,
             minWidth: "max-content",
           }}
-        >
-          <DeleteForeverIcon fontSize="medium" />
-        </Button>
+        > */}
+        <CustomizedSlider>
+          <CloseIcon fontSize="medium" />
+        </CustomizedSlider>
+        {/* </Button> */}
         <Typography variant="h4" align="center" gutterBottom>
           {t("form.title")}
         </Typography>
@@ -221,16 +234,9 @@ export const Form = ({
                   t("form.error.invalidPassword")}
               </FormHelperText>
             </FormControl>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              // sx={{ mt: 2 }}
-            >
+            <ButtonGen style={classes.button}>
               {t("header.auth.login")}
-            </Button>
+            </ButtonGen>
           </form>
         )}
       </Container>
