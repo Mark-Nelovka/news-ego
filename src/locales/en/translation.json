@@ -20,7 +20,8 @@
         },
         "error": {
             "name": "Only latin letters",
-            "password": "Password length must be more 4 symbols",
+            "passwordLength": "Password length must be more 4 symbols",
+            "passwordSymbols": "Only latin letters and numbers",
             "invalidName": "Invalid name",
             "invalidPassword": "Invalid password"
         }

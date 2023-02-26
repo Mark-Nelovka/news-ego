@@ -1,23 +1,32 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { auth, logOut } from "./authOperations";
 
-interface IStateNews {
+interface IStateAuth {
     token: null | string,
     isLoading: boolean,
     error: {
-        name: boolean,
-        password: boolean
+        name: string,
+        password: string
     }
 }
 
-export const initialState: IStateNews = {
+interface IActionAuth {
+    data: {
+        name: string,
+        password: string
+    }
+}
+
+export const initialState: IStateAuth = {
     token: null,
     isLoading: false,
     error: {
-        name: true,
-        password: true
+        name: "",
+        password: ""
     }
 };
+
+
 
 const authSlice = createSlice({
   name: 'auth',
@@ -26,24 +35,25 @@ const authSlice = createSlice({
     extraReducers: {
         [auth.pending.type]: (state, _) => {
             state.isLoading = true;
-            // state.error.name = false;
+            state.error.name = "";
+            state.error.password = "";
         },
         [auth.fulfilled.type]: (state, { payload }: PayloadAction<{token: string}>) => {
             state.token = payload.token;
             state.isLoading = false;
-            state.error.name = true;
-            state.error.password = true;
+            state.error.name = "";
+            state.error.password = "";
         },
-        [auth.rejected.type]: (state, { payload }: PayloadAction<IStateNews>) => {
+        [auth.rejected.type]: (state, { payload }: PayloadAction<IActionAuth>) => {
             console.log(payload)
             state.isLoading = false;
-            state.error.name = payload.error.name;
-            state.error.password = payload.error.password;
+            state.error.name = payload.data.name;
+            state.error.password = payload.data.password;
         },
         [logOut.type]: (state, _) => {
             state.token = null
-            state.error.name = true;
-            state.error.password = true;
+            state.error.name = "";
+            state.error.password = "";
         }
     }
     

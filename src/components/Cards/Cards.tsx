@@ -70,8 +70,6 @@ export const Cards = () => {
 };
 
 function Cardq({ id, title, imageUrl, publishedAt }: INews) {
-  // const [first, setfirst] = useState<number>();
-  const [first, setfirst] = useState("Mark");
   const { t } = useTranslation("translation");
   const dispatch = useAppDispatch();
 

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 function Header() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const isToken = useAppSelector((state) => state.auth.token);
   const isLoading = useAppSelector((state) => state.auth.isLoading);
 
@@ -34,6 +34,10 @@ function Header() {
   const changeLanguage = (e: React.MouseEvent) => {
     const { textContent } = e.target as HTMLButtonElement;
     i18n.changeLanguage(textContent!);
+  };
+
+  const handleClose = () => {
+    setOpen(!open);
   };
 
   useEffect(() => {
@@ -70,7 +74,7 @@ function Header() {
         </Toolbar>
       </AppBar>
       {open && (
-        <Form isOpen={open} handleClose={setOpen} isLoading={isLoading} />
+        <Form isOpen={open} handleClose={handleClose} isLoading={isLoading} />
       )}
     </>
   );

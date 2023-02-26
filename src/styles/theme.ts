@@ -19,7 +19,10 @@ export const theme = createTheme({
     subtitle1: {
       fontFamily: "Raleway",
       fontSize: 14,
-    }
+    },
+    // h4: {
+    //   fontFamily: "Raleway"
+    // }
   },
   palette: {
     primary: {
