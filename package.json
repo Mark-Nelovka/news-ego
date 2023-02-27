@@ -2,7 +2,7 @@
   "name": "news-ego",
   "version": "0.1.0",
   "private": false,
-  "homepage": "/news-ego",
+  "homepage": "https://Mark-Nelovka.github.io/news-ego",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

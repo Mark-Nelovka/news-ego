@@ -43,7 +43,7 @@ function Header() {
   useEffect(() => {
     if (isToken && open) {
       setOpen(false);
-      navigate("/profile");
+      navigate("/news-ego/profile");
     }
   }, [isToken, navigate, open]);
 

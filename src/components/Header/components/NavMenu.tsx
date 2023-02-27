@@ -22,15 +22,15 @@ const useStyles = makeStyles((theme: Theme): { item: any; link: any } => ({
 function NavMenu() {
   const navElements = [
     {
-      path: "/home",
+      path: "/news-ego",
       name: "header.home",
     },
     {
-      path: "/news",
+      path: "/news-ego/news",
       name: "header.news",
     },
     {
-      path: "/profile",
+      path: "/news-ego/profile",
       name: "header.profile",
     },
   ];
@@ -44,7 +44,7 @@ function NavMenu() {
         {navElements.map(({ path, name }) => {
           return (
             <ListItem key={path} className={classes.item}>
-              <NavLink className={classes.link} to={path}>
+              <NavLink end className={classes.link} to={path}>
                 {t(name)}
               </NavLink>
             </ListItem>

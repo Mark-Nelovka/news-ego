@@ -31,10 +31,10 @@ function App() {
       <main>
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/news" element={<NewsPage />} />
+            <Route path="/news-ego" element={<HomePage />} />
+            <Route path="/news-ego/news" element={<NewsPage />} />
             <Route
-              path="/profile"
+              path="/news-ego/profile"
               element={
                 <PrivatRoute>
                   <ProfilePage />
