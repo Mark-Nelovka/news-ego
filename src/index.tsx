@@ -17,7 +17,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/news-ego">
           <StyledEngineProvider injectFirst>
             <App />
           </StyledEngineProvider>

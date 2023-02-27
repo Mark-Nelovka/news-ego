@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme): { item: any; link: any } => ({
 function NavMenu() {
   const navElements = [
     {
-      path: "/",
+      path: "/home",
       name: "header.home",
     },
     {

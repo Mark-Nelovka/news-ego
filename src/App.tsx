@@ -31,7 +31,7 @@ function App() {
       <main>
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route
               path="/profile"
