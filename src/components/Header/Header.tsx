@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 function Header() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const isToken = useAppSelector((state) => state.auth.token);
   const isLoading = useAppSelector((state) => state.auth.isLoading);
 

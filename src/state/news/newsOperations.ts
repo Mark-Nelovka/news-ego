@@ -11,7 +11,7 @@ const getNews = createAsyncThunk('news/getNews', async (page: number, thunkApi) 
       return data;
    } catch (error) {
       if (axios.isAxiosError(error)) {
-         return error
+        return thunkApi.rejectWithValue(error.response?.data);
       }
    }
 });

@@ -43,7 +43,7 @@ function NavMenu() {
       <List component="ul" sx={{ display: "flex" }}>
         {navElements.map(({ path, name }) => {
           return (
-            <ListItem className={classes.item}>
+            <ListItem key={path} className={classes.item}>
               <NavLink className={classes.link} to={path}>
                 {t(name)}
               </NavLink>

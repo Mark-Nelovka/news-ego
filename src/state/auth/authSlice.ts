@@ -45,10 +45,9 @@ const authSlice = createSlice({
             state.error.password = "";
         },
         [auth.rejected.type]: (state, { payload }: PayloadAction<IActionAuth>) => {
-            console.log(payload)
             state.isLoading = false;
-            state.error.name = payload.data.name;
-            state.error.password = payload.data.password;
+            state.error.name = !payload.data.name ? "Invalid name" : "";
+            state.error.password = !payload.data.password ? "Invalid name" : "";
         },
         [logOut.type]: (state, _) => {
             state.token = null

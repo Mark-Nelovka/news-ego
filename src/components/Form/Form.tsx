@@ -46,11 +46,9 @@ export const Form = ({ isOpen, handleClose, isLoading }: IFormProps) => {
   const classes = useStyles(theme);
 
   useEffect(() => {
-    isError.name === "Invalid" &&
-      setErrorMessageName(t("invalidName") as string);
-
-    isError.password === "Invalid" &&
-      setErrorMessagePassword(t("invalidPassword") as string);
+    isError.name && setErrorMessageName(t("form.error.invalidName") as string);
+    isError.password &&
+      setErrorMessagePassword(t("form.error.invalidPassword") as string);
   }, [isError, t]);
 
   const handleError = (name: string): void => {

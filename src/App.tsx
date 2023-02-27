@@ -4,10 +4,10 @@ import { lazy, Suspense } from "react";
 import Header from "components/Header/Header";
 import HomePage from "pages/HomePage/HomePage";
 import PrivatRoute from "routers/PrivatRouter";
-import { CircularProgress, ThemeProvider } from "@mui/material";
-import { Box } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import "./i18n";
 import { theme } from "styles/theme";
+import { Loader } from "general";
 
 const NewsPage = lazy(
   () => import("pages/NewsPage/NewsPage" /* webpackChunkName: "NewsPage" */)
@@ -29,20 +29,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Header />
       <main>
-        <Suspense
-          fallback={
-            <Box
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: `translate(${"-50%"}, ${"-50%"})`,
-              }}
-            >
-              <CircularProgress color="inherit" />
-            </Box>
-          }
-        >
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/news" element={<NewsPage />} />

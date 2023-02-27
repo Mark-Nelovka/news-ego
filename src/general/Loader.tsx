@@ -8,14 +8,16 @@ const useStyles = makeStyles(() => ({
     top: "50%",
     left: "50%",
     transform: `translate(${"-50%"}, ${"-50%"})`,
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 
-export default function Loader() {
+export default function Loader({ size }: { size?: number }) {
   const classes = useStyles();
   return (
     <Box className={classes.loader}>
-      <CircularProgress color="inherit" />
+      <CircularProgress size={size} color="inherit" />
     </Box>
   );
 }
