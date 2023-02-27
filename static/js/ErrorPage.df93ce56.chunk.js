@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunknews_ego=self.webpackChunknews_ego||[]).push([[98],{8576:function(e,t,n){n.r(t),n.d(t,{default:function(){return i}});var r=n(8870),s=(n(2791),n.p+"static/media/Error.81612eab4c1602fc83da.jpeg"),c=n(3329);function i(){return(0,c.jsx)(r.Z,{width:"100%",height:"100vh",display:"flex",alignItems:"center",justifyContent:"center",children:(0,c.jsx)("img",{src:s,alt:"error "})})}}}]);
+//# sourceMappingURL=ErrorPage.df93ce56.chunk.js.map
