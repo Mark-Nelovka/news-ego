@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "./static/css/main.c72e07ee.css",
-    "main.js": "./static/js/main.d2df602c.js",
-    "NewsPage.js": "./static/js/NewsPage.cd47faea.chunk.js",
-    "ProfilePage.js": "./static/js/ProfilePage.0299bbed.chunk.js",
-    "ErrorPage.js": "./static/js/ErrorPage.df93ce56.chunk.js",
-    "static/js/787.fa6b8e89.chunk.js": "./static/js/787.fa6b8e89.chunk.js",
-    "static/media/Error.jpeg": "./static/media/Error.81612eab4c1602fc83da.jpeg",
-    "static/media/calendar.svg": "./static/media/calendar.1d422ffcaa0cc5b72a2fe9570180c1e8.svg",
-    "index.html": "./index.html",
-    "main.c72e07ee.css.map": "./static/css/main.c72e07ee.css.map",
-    "main.d2df602c.js.map": "./static/js/main.d2df602c.js.map",
-    "NewsPage.cd47faea.chunk.js.map": "./static/js/NewsPage.cd47faea.chunk.js.map",
-    "ProfilePage.0299bbed.chunk.js.map": "./static/js/ProfilePage.0299bbed.chunk.js.map",
-    "ErrorPage.df93ce56.chunk.js.map": "./static/js/ErrorPage.df93ce56.chunk.js.map",
-    "787.fa6b8e89.chunk.js.map": "./static/js/787.fa6b8e89.chunk.js.map"
+    "main.css": "/news-ego/static/css/main.c72e07ee.css",
+    "main.js": "/news-ego/static/js/main.04c23f86.js",
+    "NewsPage.js": "/news-ego/static/js/NewsPage.cd47faea.chunk.js",
+    "ProfilePage.js": "/news-ego/static/js/ProfilePage.0299bbed.chunk.js",
+    "ErrorPage.js": "/news-ego/static/js/ErrorPage.df93ce56.chunk.js",
+    "static/js/787.fa6b8e89.chunk.js": "/news-ego/static/js/787.fa6b8e89.chunk.js",
+    "static/media/Error.jpeg": "/news-ego/static/media/Error.81612eab4c1602fc83da.jpeg",
+    "static/media/calendar.svg": "/news-ego/static/media/calendar.1d422ffcaa0cc5b72a2fe9570180c1e8.svg",
+    "index.html": "/news-ego/index.html",
+    "main.c72e07ee.css.map": "/news-ego/static/css/main.c72e07ee.css.map",
+    "main.04c23f86.js.map": "/news-ego/static/js/main.04c23f86.js.map",
+    "NewsPage.cd47faea.chunk.js.map": "/news-ego/static/js/NewsPage.cd47faea.chunk.js.map",
+    "ProfilePage.0299bbed.chunk.js.map": "/news-ego/static/js/ProfilePage.0299bbed.chunk.js.map",
+    "ErrorPage.df93ce56.chunk.js.map": "/news-ego/static/js/ErrorPage.df93ce56.chunk.js.map",
+    "787.fa6b8e89.chunk.js.map": "/news-ego/static/js/787.fa6b8e89.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c72e07ee.css",
-    "static/js/main.d2df602c.js"
+    "static/js/main.04c23f86.js"
   ]
 }
