@@ -1,27 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { INews } from 'types/news';
 import { getNews, deleteNews } from "./newsOperations";
-
-interface IStateNews {
-    data: {
-        items: INews[],
-        totalCount?: number
-    },
-    isLoading: boolean,
-    error: {
-        status: string,
-        code: number,
-        message: string
-    };
-} 
-
-interface IActionError {
-    status: string,
-    code: number,
-    data: {
-        message: string
-    }
-}
+import { IStateNews, IActionError } from 'types/state';
 
 export const initialState: IStateNews = {
     data: {

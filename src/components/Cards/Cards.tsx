@@ -4,7 +4,7 @@ import { Card, Container, Grid, Typography, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useAppDispatch, useAppSelector } from "state/hook";
 import { deleteNews, getNews } from "state/news/newsOperations";
-import { INews } from "types/news";
+import { INews } from "types/state";
 import FormateDate from "helpers/transformDate";
 import { ButtonGen, Loader } from "general";
 import calendar from "assets/images/calendar.svg";

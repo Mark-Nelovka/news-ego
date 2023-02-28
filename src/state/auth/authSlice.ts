@@ -1,21 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { auth, logOut } from "./authOperations";
-
-interface IStateAuth {
-    token: null | string,
-    isLoading: boolean,
-    error: {
-        name: string,
-        password: string
-    }
-}
-
-interface IActionAuth {
-    data: {
-        name: string,
-        password: string
-    }
-}
+import { IStateAuth, IActionAuth } from 'types/state';
 
 export const initialState: IStateAuth = {
     token: null,
@@ -25,8 +10,6 @@ export const initialState: IStateAuth = {
         password: ""
     }
 };
-
-
 
 const authSlice = createSlice({
   name: 'auth',

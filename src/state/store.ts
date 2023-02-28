@@ -17,7 +17,7 @@ import authReducer from "./auth/authSlice";
 const newsPersistConfig = {
   key: 'news',
   storage,
-  blacklist: ["isLoading"]
+  blacklist: ["isLoading", "error"]
 };
 
 const authPersistConfig = {
